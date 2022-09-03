@@ -92,7 +92,8 @@ type SendResponse struct {
 // For other message types, you'll have to figure it out yourself. Looking at the protobuf schema
 // in binary/proto/def.proto may be useful to find out all the allowed fields.
 func (cli *Client) SendMessage(ctx context.Context, to types.JID, id types.MessageID, message *waProto.Message) (resp SendResponse, err error) {
-	isPeerMessage := to.User == cli.Store.ID.User
+	// isPeerMessage := to.User == cli.Store.ID.User
+	isPeerMessage := false
 	if to.AD && !isPeerMessage {
 		err = ErrRecipientADJID
 		return
