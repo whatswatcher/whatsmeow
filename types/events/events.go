@@ -264,6 +264,8 @@ type ReceiptType string
 const (
 	// ReceiptTypeDelivered means the message was delivered to the device (but the user might not have noticed).
 	ReceiptTypeDelivered ReceiptType = ""
+	// ReceiptTypeSender is sent by your other devices when a message you sent is delivered to them.
+	ReceiptTypeSender ReceiptType = "sender"
 	// ReceiptTypeRetry means the message was delivered to the device, but decrypting the message failed.
 	ReceiptTypeRetry ReceiptType = "retry"
 	// ReceiptTypeRead means the user opened the chat and saw the message.
@@ -349,6 +351,11 @@ type GroupInfo struct {
 	Locked    *types.GroupLocked    // Group locked status change (can only admins edit group info?)
 	Announce  *types.GroupAnnounce  // Group announce status change (can only admins send messages?)
 	Ephemeral *types.GroupEphemeral // Disappearing messages change
+
+	Delete *types.GroupDelete
+
+	Link   *types.GroupLinkChange
+	Unlink *types.GroupLinkChange
 
 	NewInviteLink *string // Group invite link change
 
